@@ -2,13 +2,21 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
-    id 'com.google.dagger.hilt.android' version '2.44' apply false
+    id 'com.google.dagger.hilt.android'
 }
 
 android {
     namespace 'com.example.navigationtest'
     compileSdk 33
 
+    buildFeatures {
+        compose true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.2"
+    }
+    
     defaultConfig {
         applicationId "com.example.navigationtest"
         minSdk 24
@@ -33,11 +41,11 @@ android {
         jvmTarget = '1.8'
     }
 }
-
 dependencies {
 
     def nav_version = "2.5.3"
     def compose_version = "1.4.2"
+    def hilt_version = "2.45"
 
     implementation "androidx.compose.foundation:foundation:$compose_version"
     implementation "androidx.compose.ui:ui:$compose_version"
@@ -46,7 +54,7 @@ dependencies {
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
     implementation "com.google.accompanist:accompanist-navigation-animation:0.31.0-alpha"
-    implementation "com.google.dagger:hilt-android:2.45"
-    kapt "com.google.dagger:hilt-compiler:2.45"
+    implementation "com.google.dagger:hilt-android:$hilt_version"
+    kapt "com.google.dagger:hilt-compiler:$hilt_version"
     implementation "androidx.hilt:hilt-navigation-compose:1.0.0"
 }
