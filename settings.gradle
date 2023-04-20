@@ -16,3 +16,4 @@ rootProject.name = "Navigation Compose"
 include ':app'
 include ':home'
 include ':home-api'
+include ':nav'
