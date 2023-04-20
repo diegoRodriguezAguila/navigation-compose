@@ -1,4 +1,4 @@
-package com.example.navigationtest
+package com.example.navigationapp
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
