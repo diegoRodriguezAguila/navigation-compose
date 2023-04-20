@@ -1,0 +1,7 @@
+ext {
+    android_conf = [
+            'compileSdk': 33,
+            'minSdk'    : 26,
+            'targetSdk' : 33
+    ]
+}

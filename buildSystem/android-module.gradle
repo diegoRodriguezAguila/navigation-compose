@@ -1,0 +1,6 @@
+apply(from: "$rootDir/buildSystem/android-module-config.gradle")
+
+dependencies {
+    // Tests
+    testImplementation 'junit:junit:4.13.2'
+}

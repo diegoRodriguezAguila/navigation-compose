@@ -12,5 +12,6 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "Navigation Test"
+rootProject.name = "Navigation Compose"
 include ':app'
+include ':home'

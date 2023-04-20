@@ -1,0 +1,25 @@
+apply plugin: 'kotlin-android'
+apply from: "$rootDir/buildSystem/jdk-level.gradle"
+
+android {
+    compileSdk android_conf.compileSdk
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            returnDefaultValues = true
+        }
+    }
+
+    defaultConfig {
+        minSdkVersion android_conf.minSdk
+        targetSdkVersion android_conf.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    kotlinOptions {
+        freeCompilerArgs += [
+                "-Xopt-in=kotlinx.coroutines.ExperimentalCoroutinesApi,kotlin.RequiresOptIn"
+        ]
+    }
+}
