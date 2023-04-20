@@ -42,7 +42,6 @@ android {
     }
 }
 dependencies {
-
     def nav_version = "2.5.3"
     def hilt_version = "2.45"
 
@@ -70,6 +69,7 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling'
 
     // UI Tests
-    androidTestImplementation 'androidx.compose.ui:ui-test-junit4'
+    testImplementation 'androidx.compose.ui:ui-test-junit4'
+    testImplementation 'junit:junit:4.13.2'
     debugImplementation 'androidx.compose.ui:ui-test-manifest'
 }
