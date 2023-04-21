@@ -1,1 +1,2 @@
-apply(from: "$rootDir/buildSystem/kotlin-module-library.gradle")
+apply from: "$rootDir/buildSystem/android-module-library.gradle"
+apply from: "$rootDir/buildSystem/compose-module.gradle"

@@ -15,3 +15,8 @@ android {
         }
     }
 }
+
+dependencies {
+    implementation project(":home")
+    implementation project(":home-api")
+}
