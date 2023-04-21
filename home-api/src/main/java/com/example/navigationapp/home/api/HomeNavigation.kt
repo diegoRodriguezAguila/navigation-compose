@@ -1,9 +1,8 @@
 package com.example.navigationapp.home.api
 
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 
 interface HomeNavigation {
-    val startDestination: String
-    fun NavGraphBuilder.registerGraph(navController: NavController)
+    fun createHome(modifier: Modifier): (@Composable () -> Unit)
 }
