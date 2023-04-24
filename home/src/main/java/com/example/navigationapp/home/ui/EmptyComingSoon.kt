@@ -16,7 +16,9 @@ import com.example.navigationapp.home.R
 
 @Composable
 fun EmptyComingSoon(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    title: String = stringResource(id = R.string.empty_screen_title),
+    subtitle: String = stringResource(id = R.string.empty_screen_subtitle),
 ) {
     Column(
         modifier = modifier.fillMaxSize(),
@@ -25,14 +27,14 @@ fun EmptyComingSoon(
     ) {
         Text(
             modifier = Modifier.padding(8.dp),
-            text = stringResource(id = R.string.empty_screen_title),
+            text = title,
             style = MaterialTheme.typography.titleLarge,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.primary
         )
         Text(
             modifier = Modifier.padding(horizontal = 8.dp),
-            text = stringResource(id = R.string.empty_screen_subtitle),
+            text = subtitle,
             style = MaterialTheme.typography.bodySmall,
             textAlign = TextAlign.Center,
             color = MaterialTheme.colorScheme.outline

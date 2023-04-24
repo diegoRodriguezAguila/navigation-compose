@@ -26,9 +26,8 @@ import com.example.navigationapp.home.R
 fun HomeScreen(
     modifier: Modifier = Modifier,
     topLevelDestinations: List<TopLevelDestination> = TOP_LEVEL_DESTINATIONS,
+    navController: NavHostController = rememberNavController(),
 ) {
-    val navController = rememberNavController()
-
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val selectedDestination =
         navBackStackEntry?.destination?.route ?: topLevelDestinations.first().route
@@ -102,7 +101,10 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         iconTextId = R.string.tab_list,
         registerGraph = { navController ->
             composable(route = "list") {
-                EmptyComingSoon()
+                EmptyComingSoon(
+                    title = "List Feature",
+                    subtitle = "This list is under construction!"
+                )
             }
         }
     ),
@@ -113,7 +115,10 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         iconTextId = R.string.tab_settings,
         registerGraph = { navController ->
             composable(route = "settings") {
-                EmptyComingSoon()
+                EmptyComingSoon(
+                    title = "Settings Feature",
+                    subtitle = "This settings are under construction!"
+                )
             }
         }
     ),
