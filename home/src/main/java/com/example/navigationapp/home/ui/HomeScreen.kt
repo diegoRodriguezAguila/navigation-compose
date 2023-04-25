@@ -15,13 +15,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationapp.home.R
-import com.example.settings.SettingsScreen
+import com.example.settings.registerSettingsGraph
 
 @Composable
 fun HomeScreen(
@@ -114,10 +115,6 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         selectedIcon = Icons.Default.Settings,
         unselectedIcon = Icons.Default.Settings,
         iconTextId = R.string.tab_settings,
-        registerGraph = { navController ->
-            composable(route = "settings") {
-                SettingsScreen()
-            }
-        }
+        registerGraph = NavGraphBuilder::registerSettingsGraph,
     ),
 )
