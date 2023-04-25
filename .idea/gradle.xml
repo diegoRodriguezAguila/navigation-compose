@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/home-api" />
             <option value="$PROJECT_DIR$/nav" />
             <option value="$PROJECT_DIR$/settings" />
+            <option value="$PROJECT_DIR$/settings-api" />
           </set>
         </option>
       </GradleProjectSettings>

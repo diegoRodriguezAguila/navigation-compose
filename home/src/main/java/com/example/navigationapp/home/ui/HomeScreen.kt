@@ -15,19 +15,19 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationapp.home.R
-import com.example.settings.registerSettingsGraph
+import com.example.settings.api.SettingsNavGraphProvider
 
 @Composable
 fun HomeScreen(
+    settings: SettingsNavGraphProvider,
     modifier: Modifier = Modifier,
-    topLevelDestinations: List<TopLevelDestination> = TOP_LEVEL_DESTINATIONS,
+    topLevelDestinations: List<TopLevelDestination> = getTopLevelDestinations(settings),
     navController: NavHostController = rememberNavController(),
 ) {
     val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -82,7 +82,7 @@ private fun HomeBottomNavigationBar(
     NavigationBar(modifier = Modifier.fillMaxWidth()) {
         topLevelDestinations.forEach { destination ->
             NavigationBarItem(
-                selected = selectedDestination == destination.route,
+                selected = selectedDestination.contains(destination.route),
                 onClick = { navigateToTopLevelDestination(destination) },
                 icon = {
                     Icon(
@@ -95,7 +95,7 @@ private fun HomeBottomNavigationBar(
     }
 }
 
-private val TOP_LEVEL_DESTINATIONS = listOf(
+private fun getTopLevelDestinations(settings: SettingsNavGraphProvider) = listOf(
     TopLevelDestination(
         route = "list",
         selectedIcon = Icons.Default.List,
@@ -115,6 +115,10 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         selectedIcon = Icons.Default.Settings,
         unselectedIcon = Icons.Default.Settings,
         iconTextId = R.string.tab_settings,
-        registerGraph = NavGraphBuilder::registerSettingsGraph,
+        registerGraph = {
+            with(settings) {
+                createSettingsGraph(it)
+            }
+        },
     ),
 )

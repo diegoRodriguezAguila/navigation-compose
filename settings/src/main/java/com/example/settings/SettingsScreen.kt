@@ -8,29 +8,9 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.composable
-import androidx.navigation.navigation
-
-fun NavGraphBuilder.registerSettingsGraph(navController: NavHostController) {
-    navigation(startDestination = "settings", route="app_settings") {
-        composable("settings") {
-            SettingsScreen(onGoToDetails = { details ->
-                navController.navigate("settings/$details")
-            })
-        }
-        composable("settings/{details}") { backStackEntry ->
-            val details = backStackEntry.arguments?.getString("details") ?: "NO DETAILS"
-            SettingsDetail(title = details) {
-                navController.popBackStack()
-            }
-        }
-    }
-}
 
 @Composable
-private fun SettingsScreen(
+fun SettingsScreen(
     modifier: Modifier = Modifier,
     onGoToDetails: (String)-> Unit = {},
 ) {
