@@ -21,6 +21,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.navigationapp.home.R
+import com.example.settings.SettingsScreen
 
 @Composable
 fun HomeScreen(
@@ -115,10 +116,7 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         iconTextId = R.string.tab_settings,
         registerGraph = { navController ->
             composable(route = "settings") {
-                EmptyComingSoon(
-                    title = "Settings Feature",
-                    subtitle = "This settings are under construction!"
-                )
+                SettingsScreen()
             }
         }
     ),

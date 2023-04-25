@@ -1,0 +1,3 @@
+apply(from: "$rootDir/buildSystem/android-module-library.gradle")
+apply(from: "$rootDir/buildSystem/hilt-module.gradle")
+apply(from: "$rootDir/buildSystem/compose-module.gradle")
