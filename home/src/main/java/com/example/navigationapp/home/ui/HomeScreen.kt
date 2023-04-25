@@ -20,6 +20,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navDeepLink
 import com.example.navigationapp.home.R
 
 @Composable
@@ -114,7 +115,9 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         unselectedIcon = Icons.Default.Settings,
         iconTextId = R.string.tab_settings,
         registerGraph = { navController ->
-            composable(route = "settings") {
+            composable(route = "settings",
+                deepLinks = listOf(navDeepLink { uriPattern = "$uri/settings" })
+            ) {
                 EmptyComingSoon(
                     title = "Settings Feature",
                     subtitle = "This settings are under construction!"
@@ -123,3 +126,5 @@ private val TOP_LEVEL_DESTINATIONS = listOf(
         }
     ),
 )
+
+val uri = "compose-navigation://example.com"
