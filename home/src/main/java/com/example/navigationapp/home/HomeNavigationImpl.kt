@@ -14,28 +14,29 @@ import dagger.hilt.android.components.ActivityComponent
 import javax.inject.Inject
 
 
-internal class HomeNavigationImpl @Inject constructor() : HomeNavigation {
+internal class HomeNavigationImpl @Inject constructor(
+    private val settingsNavGraphProvider: SettingsNavGraphProvider
+    ) : HomeNavigation {
     override fun createHome(modifier: Modifier): @Composable () -> Unit {
         return {
-            val settings = rememberSettingsNavGraphProvider()
             HomeScreen(
                 modifier = modifier,
-                settings = settings,
+                settings = settingsNavGraphProvider,
             )
         }
     }
 
-    @Composable
-    private fun rememberSettingsNavGraphProvider(): SettingsNavGraphProvider {
-        val context = LocalContext.current
-        return remember {
-            EntryPoints.get(context, HomeEntryPoint::class.java).settingsNavGraphProvider()
-        }
-    }
+//    @Composable
+//    private fun rememberSettingsNavGraphProvider(): SettingsNavGraphProvider {
+//        val context = LocalContext.current
+//        return remember {
+//            EntryPoints.get(context, HomeEntryPoint::class.java).settingsNavGraphProvider()
+//        }
+//    }
 }
-
-@EntryPoint
-@InstallIn(ActivityComponent::class)
-interface HomeEntryPoint {
-    fun settingsNavGraphProvider(): SettingsNavGraphProvider
-}
+//
+//@EntryPoint
+//@InstallIn(ActivityComponent::class)
+//interface HomeEntryPoint {
+//    fun settingsNavGraphProvider(): SettingsNavGraphProvider
+//}

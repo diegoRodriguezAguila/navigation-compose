@@ -6,8 +6,17 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.ComposeNavigator
+import androidx.navigation.compose.composable
 import androidx.navigation.testing.TestNavHostController
+import com.example.settings.api.SettingsNavGraphProvider
+import com.example.testing.HiltActivity
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.spyk
+import io.mockk.verify
 import org.junit.Assert.assertEquals
 import org.junit.Before
 import org.junit.Rule
@@ -19,9 +28,13 @@ import org.robolectric.shadows.ShadowLog
 @RunWith(RobolectricTestRunner::class)
 internal class HomeScreenKtTest {
 
+
     @get:Rule
     val composeTestRule = createComposeRule()
+
     lateinit var navController: TestNavHostController
+
+    private val settingsNavGraphProvider: SettingsNavGraphProvider = TestSettingsNavGraphProvider()
 
     @Before
     fun setupAppNavHost() {
@@ -29,7 +42,10 @@ internal class HomeScreenKtTest {
         composeTestRule.setContent {
             navController = TestNavHostController(LocalContext.current)
             navController.navigatorProvider.addNavigator(ComposeNavigator())
-            HomeScreen(navController = navController)
+            HomeScreen(
+                settings = settingsNavGraphProvider,
+                navController = navController
+            )
         }
     }
 
@@ -51,8 +67,15 @@ internal class HomeScreenKtTest {
 
         assertEquals(navController.currentDestination?.route, "settings")
 
-        onNodeWithText("Settings Feature")
-            .assertIsDisplayed()
 
     }
+}
+
+private class TestSettingsNavGraphProvider: SettingsNavGraphProvider {
+    override fun NavGraphBuilder.createSettingsGraph(navController: NavHostController) {
+        composable("settings") {
+
+        }
+    }
+
 }

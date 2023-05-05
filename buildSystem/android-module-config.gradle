@@ -28,4 +28,5 @@ android {
 dependencies {
     testImplementation 'androidx.test:runner:1.5.2'
     testImplementation 'org.robolectric:robolectric:4.9.2'
+    testImplementation 'io.mockk:mockk:1.12.0'
 }
